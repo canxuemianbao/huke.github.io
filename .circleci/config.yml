@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:latest # the primary container, where your job's commands are run
+    working_directory: ~/blog
+    steps:
+      - checkout # check out the code in the project directory
+      - add_ssh_keys:
+          fingerprints:
+            - "42:ec:95:79:2a:5d:82:7c:33:93:18:35:59:7c:71:01"
+      - run: bash deploy.sh
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
