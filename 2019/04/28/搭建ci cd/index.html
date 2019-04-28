@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="动机一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。整个原理很简单：  通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件 通过github pages来部署网站 通过circle ci来执行配置环境，推代码一系列操作 以后push markdown文">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-28T08:45:36.476Z">
+<meta property="og:updated_time" content="2019-04-28T08:48:51.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过circle ci和hexo搭建自己的博客">
 <meta name="twitter:description" content="动机一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。整个原理很简单：  通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件 通过github pages来部署网站 通过circle ci来执行配置环境，推代码一系列操作 以后push markdown文">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-04-28 08:45:36" itemprop="dateCreated datePublished" datetime="2019-04-28T08:45:36+00:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 08:48:51" itemprop="dateCreated datePublished" datetime="2019-04-28T08:48:51+00:00">2019-04-28</time>
             
 
             
@@ -372,8 +372,12 @@
 <li>通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件</li>
 <li>通过github pages来部署网站</li>
 <li>通过circle ci来执行配置环境，推代码一系列操作</li>
-<li>以后push markdown文件到master就可以实现自动部署啦。<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3>push -f 一个分支到git-page（或者随便起的什么名字里面）, 然后到项目的setting里面把它设置为博客的分支。<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3>熟悉3个命令，hexo clean（清除博客文件），hexo g（生成博客文件）。<h3 id="circle-ci"><a href="#circle-ci" class="headerlink" title="circle ci"></a>circle ci</h3><h4 id="关联github账号"><a href="#关联github账号" class="headerlink" title="关联github账号"></a>关联github账号</h4>登录circle ci官网，signup的时候会弹出来让你关联github，一路确认就行<h4 id="配置ssh以便使circle-ci有推代码到github上的权限"><a href="#配置ssh以便使circle-ci有推代码到github上的权限" class="headerlink" title="配置ssh以便使circle ci有推代码到github上的权限"></a>配置ssh以便使circle ci有推代码到github上的权限</h4>将生成的ssh或者已经有的ssh key的private key放到circle ci上面，public key放到github上面。</li>
+<li>以后push markdown文件到master就可以实现自动部署啦。</li>
 </ol>
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p>  push -f 一个分支到git-page（或者随便起的什么名字里面）, 然后到项目的setting里面把它设置为博客的分支。</p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>  熟悉3个命令，hexo clean（清除博客文件），hexo g（生成博客文件）。</p>
+<h3 id="circle-ci"><a href="#circle-ci" class="headerlink" title="circle ci"></a>circle ci</h3><h4 id="关联github账号"><a href="#关联github账号" class="headerlink" title="关联github账号"></a>关联github账号</h4><p>登录circle ci官网，signup的时候会弹出来让你关联github，一路确认就行</p>
+<h4 id="配置ssh以便使circle-ci有推代码到github上的权限"><a href="#配置ssh以便使circle-ci有推代码到github上的权限" class="headerlink" title="配置ssh以便使circle ci有推代码到github上的权限"></a>配置ssh以便使circle ci有推代码到github上的权限</h4><p>将生成的ssh或者已经有的ssh key的private key放到circle ci上面，public key放到github上面。</p>
 <h4 id="编写config-yml"><a href="#编写config-yml" class="headerlink" title="编写config.yml"></a>编写config.yml</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: 2</span><br><span class="line"><span class="built_in">jobs</span>:</span><br><span class="line">  build:</span><br><span class="line">    docker: <span class="comment"># use the docker executor type; machine and macos executors are also supported</span></span><br><span class="line">      - image: circleci/node:latest <span class="comment"># the primary container, where your job's commands are run</span></span><br><span class="line">    working_directory: ~/blog</span><br><span class="line">    steps:</span><br><span class="line">      - checkout <span class="comment"># check out the code in the project directory</span></span><br><span class="line">      - add_ssh_keys:</span><br><span class="line">          fingerprints:</span><br><span class="line">            - <span class="string">"你自己的ssh fingerprints"</span></span><br><span class="line">      - run: bash deploy.sh</span><br><span class="line"></span><br><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  main:</span><br><span class="line">    <span class="built_in">jobs</span>:</span><br><span class="line">      - build:</span><br><span class="line">          filters:</span><br><span class="line">            branches:</span><br><span class="line">              only: master</span><br></pre></td></tr></table></figure>
 <p>deploy.sh 内容如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">yarn</span><br><span class="line">git init</span><br><span class="line">git config --global user.name <span class="string">"huke"</span></span><br><span class="line">git config --global user.email <span class="string">"13602547696@163.com"</span></span><br><span class="line">rm -rf public</span><br><span class="line">git submodule update --init </span><br><span class="line">node_modules/.bin/hexo g</span><br><span class="line"></span><br><span class="line">rm -rf gh-pages</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/canxuemianbao/blog.git -b gh-pages gh-pages</span><br><span class="line">cp -af public/. gh-pages </span><br><span class="line"><span class="built_in">cd</span> gh-pages</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"Site updated: `date +"</span>%Y-%m-%d %H:%M:%S<span class="string">"` UTC+8"</span></span><br><span class="line">git push origin gh-pages</span><br></pre></td></tr></table></figure></p>
 <p>创建.circleci，放到master和gh-pages的根目录下，然后把config.yml放到.circleci下就行。之所以要放在gh-pages下是为了避免ci每次再去部署一遍gh-pages，上面的workflows里面注明了只跑master。</p>
@@ -416,15 +420,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/04/28/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/04/28/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
