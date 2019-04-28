@@ -9,6 +9,7 @@ title: 通过circle ci和hexo搭建自己的博客
 2. 通过github pages来部署网站
 3. 通过circle ci来执行配置环境，推代码一系列操作
 4. 以后push markdown文件到master就可以实现自动部署啦。
+
 ## 技术
 ### github
   push -f 一个分支到git-page（或者随便起的什么名字里面）, 然后到项目的setting里面把它设置为博客的分支。
