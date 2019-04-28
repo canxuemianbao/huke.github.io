@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/28/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/28/搭建ci cd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -306,7 +306,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/blog/2019/04/28/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+                <a href="/blog/2019/04/28/搭建ci cd/" class="post-title-link" itemprop="url">通过circle ci和hexo搭建自己的博客</a>
               
             
           </h1>
@@ -331,7 +331,7 @@
                 
               
 
-              <time title="Created: 2019-04-28 03:51:27" itemprop="dateCreated datePublished" datetime="2019-04-28T03:51:27+00:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 08:45:36" itemprop="dateCreated datePublished" datetime="2019-04-28T08:45:36+00:00">2019-04-28</time>
             
 
             
@@ -368,15 +368,25 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。<br>整个原理很简单：</p>
+<ol>
+<li>通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件</li>
+<li>通过github pages来部署网站</li>
+<li>通过circle ci来执行配置环境，推代码一系列操作</li>
+<li>以后push markdown文件到master就可以实现自动部署啦。<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3>push -f 一个分支到git-page（或者随便起的什么名字里面）, 然后到项目的setting里面把它设置为博客的分支。<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3>熟悉3个命令，hexo clean（清除博客文件），hexo g（生成博客文件）。<h3 id="circle-ci"><a href="#circle-ci" class="headerlink" title="circle ci"></a>circle ci</h3><h4 id="关联github账号"><a href="#关联github账号" class="headerlink" title="关联github账号"></a>关联github账号</h4>登录circle ci官网，signup的时候会弹出来让你关联github，一路确认就行<h4 id="配置ssh以便使circle-ci有推代码到github上的权限"><a href="#配置ssh以便使circle-ci有推代码到github上的权限" class="headerlink" title="配置ssh以便使circle ci有推代码到github上的权限"></a>配置ssh以便使circle ci有推代码到github上的权限</h4>将生成的ssh或者已经有的ssh key的private key放到circle ci上面，public key放到github上面。</li>
+</ol>
+<h4 id="编写config-yml"><a href="#编写config-yml" class="headerlink" title="编写config.yml"></a>编写config.yml</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: 2</span><br><span class="line"><span class="built_in">jobs</span>:</span><br><span class="line">  build:</span><br><span class="line">    docker: <span class="comment"># use the docker executor type; machine and macos executors are also supported</span></span><br><span class="line">      - image: circleci/node:latest <span class="comment"># the primary container, where your job's commands are run</span></span><br><span class="line">    working_directory: ~/blog</span><br><span class="line">    steps:</span><br><span class="line">      - checkout <span class="comment"># check out the code in the project directory</span></span><br><span class="line">      - add_ssh_keys:</span><br><span class="line">          fingerprints:</span><br><span class="line">            - <span class="string">"你自己的ssh fingerprints"</span></span><br><span class="line">      - run: bash deploy.sh</span><br><span class="line"></span><br><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  main:</span><br><span class="line">    <span class="built_in">jobs</span>:</span><br><span class="line">      - build:</span><br><span class="line">          filters:</span><br><span class="line">            branches:</span><br><span class="line">              only: master</span><br></pre></td></tr></table></figure>
+<p>deploy.sh 内容如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">yarn</span><br><span class="line">git init</span><br><span class="line">git config --global user.name <span class="string">"huke"</span></span><br><span class="line">git config --global user.email <span class="string">"13602547696@163.com"</span></span><br><span class="line">rm -rf public</span><br><span class="line">git submodule update --init </span><br><span class="line">node_modules/.bin/hexo g</span><br><span class="line"></span><br><span class="line">rm -rf gh-pages</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/canxuemianbao/blog.git -b gh-pages gh-pages</span><br><span class="line">cp -af public/. gh-pages </span><br><span class="line"><span class="built_in">cd</span> gh-pages</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"Site updated: `date +"</span>%Y-%m-%d %H:%M:%S<span class="string">"` UTC+8"</span></span><br><span class="line">git push origin gh-pages</span><br></pre></td></tr></table></figure></p>
+<p>创建.circleci，放到master和gh-pages的根目录下，然后把config.yml放到.circleci下就行。之所以要放在gh-pages下是为了避免ci每次再去部署一遍gh-pages，上面的workflows里面注明了只跑master。</p>
+<p>deploy.sh跑了一些自定义脚本，这里我做的事情很简单，就是把博客的分支 clone下来，通过hexo g生成新的博客页面并且拷贝到这个branch里面，然后再git push到博客的分支。</p>
+<h2 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h2><ol>
+<li>拷贝一个文件夹下的所有东西到另一个文件夹里面，在mac上cp -a test1/ test2就行，在linux下必须要cp -a test1/. test2才行</li>
+<li>把主题(hexo-themes-next)作为submodule，这样不需要每次上传这些特别大的主题，然后如果有ci的话，本地也不需要生成或者下载这些也别大的主题，ci这边跑跑git submodule update –init就好</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">hexo</a></p>
+<p><a href="https://circleci.com/" target="_blank" rel="noopener">circle ci</a></p>
+<p><a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5" target="_blank" rel="noopener">创建ssh key</a></p>
+<p><a href="https://halu.lu/post/auto-deploy-with-circleci/" target="_blank" rel="noopener">博客</a></p>
 
           
         
@@ -433,7 +443,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/28/搭建ci cd/">
+    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/28/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -453,7 +463,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/blog/2019/04/28/搭建ci cd/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/blog/2019/04/28/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
               
             
           </h1>
@@ -478,7 +488,7 @@
                 
               
 
-              <time title="Created: 2019-04-28 03:51:27" itemprop="dateCreated datePublished" datetime="2019-04-28T03:51:27+00:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 08:45:36" itemprop="dateCreated datePublished" datetime="2019-04-28T08:45:36+00:00">2019-04-28</time>
             
 
             
@@ -515,7 +525,15 @@
       
         
           
-            <p>这次是真的你好世界了！</p>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
