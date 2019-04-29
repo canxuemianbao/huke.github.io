@@ -11,6 +11,8 @@ title: 重构audio引擎中设计模式的应用
 我们需要使用webaudio作为底层api，封装一个音效和背景音乐播放器。因此有一个source.ts文件用于做最基本的webaudio封装，它其实就已经是一个音乐播放器了，effectPlayer则是装饰了source.ts的音效播放器。
 
 ### 单例模式和简单工厂模式
+
+source.ts
 ```
 class AudioSource {
   private static _audioContext:AudioContext;
@@ -40,19 +42,28 @@ class AudioSource {
     const audioSource = new AudioSource(src, audioContext, await getBuffer(), options);
     return audioSource;
   }
+
+  // 播放音乐
+  public tick() {
+    ....
+  }
 }
 ```
 写代码的时候发现需要异步构建source类，然而是没有办法直接new 一个source出来的，用init的方法来初始化对于使用者来说又特别繁琐。于是想着换种思维：把AudioSource本身当成一个AudioSource的工厂，通过build方法生成了一个AudioSource对象，这样使用者的体验就会变好（我原来要new完了再调用异步init，现在不用啦）。而文档又推荐了AudioContext整个页面应该只有一个，于是顺利成章的在这里使用了单例模式。
 
 ### 装饰器模式/原型模式/对象池模式
-对象池模式其实不是23中设计模式的一种，不过它在这里使用还是蛮有意思的
+这里之所以要用到这么多模式是因为一个新的需求：音效播放器。
+音乐播放器在适配了浏览器之后非常好用，然而。。。。
+如果同时要播放多个声音怎么办？？？
+多个玩家一起跳，就应该有多个声音呀，然而如果每个玩家都创建一个音效对象又过于浪费，buffer很大滴。
+于是很显然，对象池在这里就是一个好的解决办法，那么自然而然的就需要有一个clone方法，方便在对象池里添加新对象。而又将这一切东西放在一个新的对象里面，同时也可以继续使用原来的音乐播放器作为底层，装饰器模式就派上用场啦！
 
 source.ts
-
 ```
 class AudioSource {
   ......
 
+  // 原型模式，直接clone
   public clone(withState = false) {
     if (withState) {
       return new AudioSource(this.src, AudioSource.getAudioContext(), this.buffer, this.getState());
@@ -90,6 +101,7 @@ class AudioSource {
 effectPlayer.ts
 
 ```
+// 对象池模式，用于存储多个同时发生的音效
 class Pool {
   private soundPrototype:AudioSource;
   private unUsed:AudioSource[] = [];
@@ -113,6 +125,7 @@ class Pool {
   }
 }
 
+// 装饰器模式，封装了AudioSource
 class EffectPlayer {
   private currentSounds:AudioSource[] = [];
   private pool:Pool;
