@@ -1,5 +1,6 @@
 ---
 title: 通过circle ci和hexo搭建自己的博客
+date: 2019-04-25
 ---
 
 ## 动机
@@ -8,7 +9,7 @@ title: 通过circle ci和hexo搭建自己的博客
 1. 通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件
 2. 通过github pages来部署网站
 3. 通过circle ci来执行配置环境，推代码一系列操作
-4. 以后push markdown文件到master就可以实现自动部署啦。
+4. 以后push markdown文件到master就可以实现自动部署啦
 
 ## 技术
 ### github
