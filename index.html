@@ -286,6 +286,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/30/canvas计算方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/04/30/canvas计算方式/" class="post-title-link" itemprop="url">canvas移动/缩放/旋转的常用计算方式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+00:00">2019-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/coordinate.png" width="400" height="300" alt="坐标轴" align="center"></p>
+<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><p>  想要让物体中心移动坐标点为x, y的位置，可以这么画：</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/translate1.png" width="400" height="300" alt="移动" align="center"></p>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/rotate.png" width="400" height="300" alt="移动+旋转" align="center"><br> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_translate_and_rotate.png" width="400" height="300" alt="移动+旋转" align="center"></p>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/flip.png" width="400" height="300" alt="翻转" align="center"><br> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_flip.png" width="400" height="300" alt="翻转" align="center"></p>
+<h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>  transfrom基本公式为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.transform(a, b, c, d, e, f);</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/matrix.png" width="400" height="200" alt="翻转" align="center"><br>  transform为更高级的特性，能够免去很多手动计算，比如上面的各种情况用transform来画就是：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 只移动</span><br><span class="line">ctx.transform(1, 0, 0, 1, x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 图片中心点移动到(x, y)后旋转angle度</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br><span class="line"></span><br><span class="line">// 图片左上角点围绕某个点(x1, x2)旋转</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  - Math.cos(angle) * x1 + Math.sin(angle) * y1 + x1 , - Math.sin(angle) * x1 - Math.cos(angle) * y1 + y1);</span><br><span class="line">ctx.drawImage(img, 0, 0);</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html" target="_blank" rel="noopener">凹凸实验室</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/29/webAudio重构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -348,7 +515,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-30 02:43:59" itemprop="dateModified" datetime="2019-04-30T02:43:59+00:00">2019-04-30</time>
+                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
               
             
           </span>
@@ -511,7 +678,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-30 02:43:59" itemprop="dateModified" datetime="2019-04-30T02:43:59+00:00">2019-04-30</time>
+                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
               
             
           </span>
@@ -653,7 +820,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
