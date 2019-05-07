@@ -122,7 +122,7 @@ function setComponentProps(component, props) {
 
 注意，如果两个component类型不一致，它们的内容一样也会被完全替代，如图：
 
- <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/tree_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
+ <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/component_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
 
 ### 子节点的对比
 子节点递归会有3种情况：
