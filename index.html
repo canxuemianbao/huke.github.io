@@ -286,6 +286,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/05/07/react的diff算法的模拟/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/05/07/react的diff算法的模拟/" class="post-title-link" itemprop="url">写一个react：实现react diff算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-07 00:00:00 / Modified: 06:48:59" itemprop="dateCreated datePublished" datetime="2019-05-07T00:00:00+00:00">2019-05-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="react-diff算法的简介"><a href="#react-diff算法的简介" class="headerlink" title="react diff算法的简介"></a>react diff算法的简介</h2><blockquote>
+<p>React基于两点假设，实现了一个启发的O(n)算法：</p>
+<ol>
+<li>两个不同类型的元素将产生不同的树。</li>
+<li>开发者可以使用key属性来提示哪些子元素是稳定的。</li>
+</ol>
+</blockquote>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/tree_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
+<p>本质上其实很简单，react只对比同层同类型的节点。如图中每个颜色对应的部分。</p>
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>如果想要实现这个需求，我们需要首先了解react节点的基本内部结构，即vnode（react的虚拟dom的格式）以及component（提供render方法来产生虚拟dom）这两种节点。<br>其中vnode的数据结构大概长成这样(实际中的tag字段其实是type字段)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;tag: &quot;div&quot;, attrs: null, children: Array(0)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而component的数据结构长成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;tag: ƒ, attrs: null, children: Array(0)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>区别在于component的tag是一个function，也就是render方法，而普通的vnode的tag则是节点的类型。</p>
+<p>想要实现diff算法则是需要实现dom结构/旧的virtual dom结构与新virtual dom结构的每一层的对比（上图），并且应用到真正的dom结构里面，来实现部分render。<br>react之前的实现（在fiber之前）是通过中序遍历来对比节点的，这里分3种类型的对比：</p>
+<ol>
+<li>两个节点本身的对比</li>
+<li>component的对比</li>
+<li>子节点的对比（主要是为了排序）</li>
+</ol>
+<h3 id="两个节点本身的对比"><a href="#两个节点本身的对比" class="headerlink" title="两个节点本身的对比"></a>两个节点本身的对比</h3><p>当比较两个相同类型的React DOM元素时，React则会观察二者的属性(attributes)，保持相同的底层DOM节点，并仅更新变化的属性。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=&quot;before&quot; title=&quot;stuff&quot; /&gt;</span><br><span class="line">&lt;div className=&quot;after&quot; title=&quot;stuff&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>通过比较这两个元素，React知道仅更改底层DOM元素的className。<br>在处理完DOM元素后，React递归其后代。<br>简易代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function diffNode(dom, vnode) &#123;</span><br><span class="line">  diffAttributes(dom, vnode);</span><br><span class="line"></span><br><span class="line">  if (vnode.children &amp;&amp; vnode.children.length &gt; 0 || (out.childNodes &amp;&amp; out.childNodes.length &gt; 0)) &#123;</span><br><span class="line">    diffChildren(dom, vnode.children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return dom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="component的对比"><a href="#component的对比" class="headerlink" title="component的对比"></a>component的对比</h3><p>当中序遍历遇到了component的时候，react会判断这上一次的dom是否是这一次component的类型，如果是的话就调用setComponentProps把props传给component，否则就完全销毁上一个component（如果有的话），然后重新创建一个component。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">function diffComponent(dom, vnode) &#123;</span><br><span class="line">  // _component记录了上一个dom的component</span><br><span class="line"></span><br><span class="line">  const c = dom &amp;&amp; dom._component;</span><br><span class="line">    // 如果上一个dom的component存在并且类型和新的component一致的话就改变它的props</span><br><span class="line">    // 将新的props传给component</span><br><span class="line"></span><br><span class="line">    setComponentProps(c, vnode.attrs);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // 不一致的话则重新生成新的component</span><br><span class="line"></span><br><span class="line">    if (c) &#123;</span><br><span class="line">      unmountComponent(c);</span><br><span class="line">    &#125;</span><br><span class="line">    // 创建component，并且走它的生命周期</span><br><span class="line"></span><br><span class="line">    const newComponent = createComponent(vnode.tag, vnode.attrs);</span><br><span class="line">    setComponentProps(newComponent, vnode.attrs);</span><br><span class="line">    if (dom) &#123;</span><br><span class="line">      dom._component = null;</span><br><span class="line">      removeNode(dom);</span><br><span class="line">    &#125;</span><br><span class="line">    dom = newComponent.base;</span><br><span class="line">  &#125;</span><br><span class="line">  return dom;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function renderComponent(component) &#123;</span><br><span class="line">  let base;</span><br><span class="line">  if (component.base) &#123;</span><br><span class="line">      component.componentWillUpdate();</span><br><span class="line">  &#125;</span><br><span class="line">  base = diffNode(component.base, component.render());</span><br><span class="line">  if (!component.base) &#123;</span><br><span class="line">      component.componentDidMount();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      component.componentDidUpdate();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  component.base = base;</span><br><span class="line">  base._component = component;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createComponent(component, props) &#123;</span><br><span class="line">  if (component.prototype &amp;&amp; component.prototype.render) &#123;</span><br><span class="line">    return new component(props);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    const inst = &#123;&#125;;</span><br><span class="line">    inst.constructor = component;</span><br><span class="line">    inst.render = function() &#123;</span><br><span class="line">      return this.constructor(props);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// componentWillMount componentWillReceiveProps</span><br><span class="line">function setComponentProps(component, props) &#123;</span><br><span class="line">  if (!component.base) &#123;</span><br><span class="line">      component.componentWillMount();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      component.componentWillReceiveProps(props);</span><br><span class="line">  &#125;</span><br><span class="line">  renderComponent(component);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意，如果两个component类型不一致，它们的内容一样也会被完全替代，如图：</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/tree_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
+<h3 id="子节点的对比"><a href="#子节点的对比" class="headerlink" title="子节点的对比"></a>子节点的对比</h3><p>子节点递归会有3种情况：</p>
+<ol>
+<li>子节点提供了key，则按照key相同的先比较</li>
+<li>没有提供key的按照类型相同的进行比较</li>
+<li>完全不同的则就地创建新节点</li>
+</ol>
+<p>而在最后则会删除那些不需要的旧节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">function diffChildren(dom, vchildren) &#123;</span><br><span class="line">  const domChildren = dom.childNodes;</span><br><span class="line">  const children = [];</span><br><span class="line"></span><br><span class="line">  const keyed = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  // 将有key的节点和没有key的节点分开</span><br><span class="line">  if (domChildren.length &gt; 0) &#123;</span><br><span class="line">    for (let i = 0; i &lt; domChildren.length; i++) &#123;</span><br><span class="line">      const child = domChildren[i];</span><br><span class="line">      const key = child.key;</span><br><span class="line">      if (key) &#123;</span><br><span class="line">        keyed[key] = child;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        children.push(child);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (let i = 0; i &lt; vchildren.length; i++) &#123;</span><br><span class="line">    const vnode = vchildren[i];</span><br><span class="line">    let child;</span><br><span class="line">    if (vnode.key != undefined &amp;&amp; vnode.key === keyed[key]) &#123;</span><br><span class="line">      child = keyed[key];</span><br><span class="line">      keyed[key] = undefined;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      for (let j = 0; j &lt; children.length; j++) &#123;</span><br><span class="line">        if (children[j] != undefined &amp;&amp; isSameNodeType(children[j], vnode)) &#123;</span><br><span class="line">          child = children[j];</span><br><span class="line">          children[j] = undefined;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 原来就有的节点会就地改变，而如果child为undefined的话则会创造新的节点，vnode不会是undefined</span><br><span class="line">    const out = diffNode(child, vnode);</span><br><span class="line">    const currentDom = dom.childNodes[i];</span><br><span class="line">    if (out !== currentDom) &#123;</span><br><span class="line">      dom.insertBefore(out, currentDom);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const pendingLength = dom.childNodes.length;</span><br><span class="line">  for (let i = vchildren.length; i &lt; pendingLength; i++) &#123;</span><br><span class="line">    dom.removeChild(dom.childNodes[vchildren.length]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>这边的实现参考了<a href="https://github.com/hujiulong/simple-react/tree/master" target="_blank" rel="noopener">从零开始实现一个React</a>的例子，自己fork了它，并且从第一章开始重新写。<br>这边可以拉一下我的分支来本地跑跑，git clone <a href="https://github.com/canxuemianbao/simple-react/tree/diff，`yarn" target="_blank" rel="noopener">https://github.com/canxuemianbao/simple-react/tree/diff，`yarn</a> start`即可。</p>
+<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/react_diff.gif" width="900" height="600" alt="坐标轴" align="center"></p>
+<p>如图，只有文字被浏览器发现修改了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前只是将理论应用到了代码里面，大部分是参考别人的实现==，但是大方向是没有问题的。下一步可以是围观react的真正实现，也可以是继续按照原理实现fiber和异步state，看看哪一步走不下去了就换一个方向吧~，在之后会完善本篇博客，使其更容易阅读。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/hujiulong/blog/issues/6" target="_blank" rel="noopener">从零开始实现一个React</a><br><a href="https://react.docschina.org/docs/reconciliation.html" target="_blank" rel="noopener">react reconciliation</a><br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">React 源码剖析系列 － 不可思议的 react diff</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/30/canvas计算方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -348,7 +526,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
+                <time title="Modified: 2019-05-07 06:48:59" itemprop="dateModified" datetime="2019-05-07T06:48:59+00:00">2019-05-07</time>
               
             
           </span>
@@ -515,7 +693,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
+                <time title="Modified: 2019-05-07 06:48:59" itemprop="dateModified" datetime="2019-05-07T06:48:59+00:00">2019-05-07</time>
               
             
           </span>
@@ -678,7 +856,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-04 05:05:25" itemprop="dateModified" datetime="2019-05-04T05:05:25+00:00">2019-05-04</time>
+                <time title="Modified: 2019-05-07 06:48:59" itemprop="dateModified" datetime="2019-05-07T06:48:59+00:00">2019-05-07</time>
               
             
           </span>
@@ -820,7 +998,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
