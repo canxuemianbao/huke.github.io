@@ -97,14 +97,15 @@
 
 
   <meta name="description" content="简介原来的audio标签不仅太卡顿了，缓存由浏览器控制，而且还没有立体声，对于3d游戏的应用场景不能忍。因此我们打算使用webaudio对它进行重构，webaudio是一个更底层，操纵性更好的api（虽然兼容性和audio标签一样蛋疼==），应用在3d游戏里面显然更加合适。写它的过程中用到了一些设计模式，拿出来分享一下。 大概的文件结构 需求我们需要使用webaudio作为底层api，封装一个音效">
+<meta name="keywords" content="react canvas nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重构audio引擎中设计模式的应用">
 <meta property="og:url" content="https://canxuemianbao.github.io/blog/2019/04/29/webAudio重构/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="残血面包的博客">
 <meta property="og:description" content="简介原来的audio标签不仅太卡顿了，缓存由浏览器控制，而且还没有立体声，对于3d游戏的应用场景不能忍。因此我们打算使用webaudio对它进行重构，webaudio是一个更底层，操纵性更好的api（虽然兼容性和audio标签一样蛋疼==），应用在3d游戏里面显然更加合适。写它的过程中用到了一些设计模式，拿出来分享一下。 大概的文件结构 需求我们需要使用webaudio作为底层api，封装一个音效">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/WechatIMG7.png">
-<meta property="og:updated_time" content="2019-05-07T06:48:59.380Z">
+<meta property="og:updated_time" content="2019-05-07T06:57:23.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重构audio引擎中设计模式的应用">
 <meta name="twitter:description" content="简介原来的audio标签不仅太卡顿了，缓存由浏览器控制，而且还没有立体声，对于3d游戏的应用场景不能忍。因此我们打算使用webaudio对它进行重构，webaudio是一个更底层，操纵性更好的api（虽然兼容性和audio标签一样蛋疼==），应用在3d游戏里面显然更加合适。写它的过程中用到了一些设计模式，拿出来分享一下。 大概的文件结构 需求我们需要使用webaudio作为底层api，封装一个音效">
@@ -126,7 +127,7 @@
   };
 </script>
 
-  <title>重构audio引擎中设计模式的应用 | Hexo</title>
+  <title>重构audio引擎中设计模式的应用 | 残血面包的博客</title>
   
 
 
@@ -185,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">残血面包的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -294,13 +295,13 @@
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/29/webAudio重构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="huke">
+      <meta itemprop="description" content="hello world">
       <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="残血面包的博客">
     </span>
 
     
@@ -351,7 +352,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-07 06:48:59" itemprop="dateModified" datetime="2019-05-07T06:48:59+00:00">2019-05-07</time>
+                <time title="Modified: 2019-05-07 06:57:23" itemprop="dateModified" datetime="2019-05-07T06:57:23+00:00">2019-05-07</time>
               
             
           </span>
@@ -494,8 +495,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <p class="site-author-name" itemprop="name">huke</p>
+              <div class="site-description motion-element" itemprop="description">hello world</div>
           </div>
 
           
@@ -572,7 +573,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">huke</span>
 
   
 
