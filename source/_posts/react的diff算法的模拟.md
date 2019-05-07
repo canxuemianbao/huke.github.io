@@ -185,7 +185,7 @@ function diffChildren(dom, vchildren) {
 
 ## 实现
 这边的实现参考了[从零开始实现一个React](https://github.com/hujiulong/simple-react/tree/master)的例子，自己fork了它，并且从第一章开始重新写。
-这边可以拉一下我的分支来本地跑跑，git clone https://github.com/canxuemianbao/simple-react/tree/diff，`yarn start`即可。
+这边可以拉一下我的分支来本地跑跑，git clone https://github.com/canxuemianbao/simple-react/tree/diff， `yarn start`即可。
 
  <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/react_diff.gif" width = "900" height = "600" alt="坐标轴" align=center />
 
