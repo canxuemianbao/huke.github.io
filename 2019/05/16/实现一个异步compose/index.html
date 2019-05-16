@@ -96,26 +96,18 @@
 
 
 
-  <meta name="description" content="简介  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。   移动  想要让物体中心移动坐标点为x, y的位置，可以这么画：   旋转  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：    缩放  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：    transform  t">
+  <meta name="description" content="描述现在有两个异步函数，希望能够按顺序异步执行它们function add1(n, callback) {  setTimeout(() =&amp;gt; {    callback(n + 1);  }, 1000);} function mult3(n, callback) {  setTimeout(() =&amp;gt; {    callback(n * 3);  }, 1000);} compos">
 <meta name="keywords" content="react canvas nodejs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas移动&#x2F;缩放&#x2F;旋转的常用计算方式">
-<meta property="og:url" content="https://canxuemianbao.github.io/blog/2019/04/30/canvas计算方式/index.html">
+<meta property="og:title" content="实现一个异步compose方法">
+<meta property="og:url" content="https://canxuemianbao.github.io/blog/2019/05/16/实现一个异步compose/index.html">
 <meta property="og:site_name" content="残血面包的博客">
-<meta property="og:description" content="简介  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。   移动  想要让物体中心移动坐标点为x, y的位置，可以这么画：   旋转  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：    缩放  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：    transform  t">
+<meta property="og:description" content="描述现在有两个异步函数，希望能够按顺序异步执行它们function add1(n, callback) {  setTimeout(() =&amp;gt; {    callback(n + 1);  }, 1000);} function mult3(n, callback) {  setTimeout(() =&amp;gt; {    callback(n * 3);  }, 1000);} compos">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/coordinate.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/translate1.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/rotate.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_translate_and_rotate.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/flip.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_flip.png">
-<meta property="og:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/matrix.png">
 <meta property="og:updated_time" content="2019-05-16T07:09:36.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas移动&#x2F;缩放&#x2F;旋转的常用计算方式">
-<meta name="twitter:description" content="简介  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。   移动  想要让物体中心移动坐标点为x, y的位置，可以这么画：   旋转  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：    缩放  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：    transform  t">
-<meta name="twitter:image" content="http://pqpdgd2yx.bkt.clouddn.com/blog/coordinate.png">
+<meta name="twitter:title" content="实现一个异步compose方法">
+<meta name="twitter:description" content="描述现在有两个异步函数，希望能够按顺序异步执行它们function add1(n, callback) {  setTimeout(() =&amp;gt; {    callback(n + 1);  }, 1000);} function mult3(n, callback) {  setTimeout(() =&amp;gt; {    callback(n * 3);  }, 1000);} compos">
 
 
 
@@ -123,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="https://canxuemianbao.github.io/blog/2019/04/30/canvas计算方式/">
+  <link rel="canonical" href="https://canxuemianbao.github.io/blog/2019/05/16/实现一个异步compose/">
 
 
 
@@ -133,7 +125,7 @@
   };
 </script>
 
-  <title>canvas移动/缩放/旋转的常用计算方式 | 残血面包的博客</title>
+  <title>实现一个异步compose方法 | 残血面包的博客</title>
   
 
 
@@ -298,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/30/canvas计算方式/">
+    <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/05/16/实现一个异步compose/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huke">
@@ -315,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">canvas移动/缩放/旋转的常用计算方式
+          <h1 class="post-title" itemprop="name headline">实现一个异步compose方法
 
               
             
@@ -341,24 +333,12 @@
                 
               
 
-              <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+00:00">2019-04-30</time>
+              <time title="Created: 2019-05-16 00:00:00 / Modified: 07:09:36" itemprop="dateCreated datePublished" datetime="2019-05-16T00:00:00+00:00">2019-05-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-16 07:09:36" itemprop="dateModified" datetime="2019-05-16T07:09:36+00:00">2019-05-16</time>
               
             
           </span>
@@ -392,20 +372,10 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/coordinate.png" width="400" height="300" alt="坐标轴" align="center"></p>
-<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><p>  想要让物体中心移动坐标点为x, y的位置，可以这么画：</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/translate1.png" width="400" height="300" alt="移动" align="center"></p>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/rotate.png" width="400" height="300" alt="移动+旋转" align="center"><br> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_translate_and_rotate.png" width="400" height="300" alt="移动+旋转" align="center"></p>
-<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/flip.png" width="400" height="300" alt="翻转" align="center"><br> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/draw_flip.png" width="400" height="300" alt="翻转" align="center"></p>
-<h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>  transfrom基本公式为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.transform(a, b, c, d, e, f);</span><br></pre></td></tr></table></figure></p>
-<p>  <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/matrix.png" width="400" height="200" alt="翻转" align="center"><br>  transform为更高级的特性，能够免去很多手动计算，比如上面的各种情况用transform来画就是：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 只移动</span><br><span class="line">ctx.transform(1, 0, 0, 1, x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 图片中心点移动到(x, y)后旋转angle度</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br><span class="line"></span><br><span class="line">// 图片左上角点围绕某个点(x1, x2)旋转</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  - Math.cos(angle) * x1 + Math.sin(angle) * y1 + x1 , - Math.sin(angle) * x1 - Math.cos(angle) * y1 + y1);</span><br><span class="line">ctx.drawImage(img, 0, 0);</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html" target="_blank" rel="noopener">凹凸实验室</a></p>
-
+        <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>现在有两个异步函数，希望能够按顺序异步执行它们<br>function add1(n, callback) {<br>  setTimeout(() =&gt; {<br>    callback(n + 1);<br>  }, 1000);<br>}</p>
+<p>function mult3(n, callback) {<br>  setTimeout(() =&gt; {<br>    callback(n * 3);<br>  }, 1000);<br>}</p>
+<p>compose(1, add1, mult3)<br>// 希望输出6 (1 + 1) * 3</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function compose(n, ...funcs) &#123;</span><br><span class="line">  const createP = (func, value) =&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; func(value, resolve));</span><br><span class="line">  &#125;</span><br><span class="line">  let p = Promise.resolve(n);</span><br><span class="line">  for (let i = 0; i &lt; funcs.length; i++) &#123;</span><br><span class="line">    const func = funcs[i];</span><br><span class="line">    p = p.then((v) =&gt; createP(func, v));</span><br><span class="line">  &#125;</span><br><span class="line">  return p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3).then(console.log);</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -435,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/04/29/webAudio重构/" rel="next" title="重构audio引擎中设计模式的应用">
-                <i class="fa fa-chevron-left"></i> 重构audio引擎中设计模式的应用
+              <a href="/blog/2019/05/07/react的diff算法的模拟/" rel="next" title="写一个react：实现react diff算法">
+                <i class="fa fa-chevron-left"></i> 写一个react：实现react diff算法
               </a>
             
           </div>
@@ -444,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/05/07/react的diff算法的模拟/" rel="prev" title="写一个react：实现react diff算法">
-                写一个react：实现react diff算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动"><span class="nav-number">2.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转"><span class="nav-number">3.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩放"><span class="nav-number">4.</span> <span class="nav-text">缩放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transform"><span class="nav-number">5.</span> <span class="nav-text">transform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li></ol></div>
             
 
           </div>
