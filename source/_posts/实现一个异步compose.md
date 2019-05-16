@@ -5,6 +5,7 @@ date: 2019-05-16
 
 ## 描述
 现在有两个异步函数，希望能够按顺序异步执行它们
+```
 function add1(n, callback) {
   setTimeout(() => {
     callback(n + 1);
@@ -19,6 +20,7 @@ function mult3(n, callback) {
 
 compose(1, add1, mult3)
 // 希望输出6 (1 + 1) * 3
+```
 
 ## 实现
 ```
