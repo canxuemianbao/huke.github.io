@@ -335,7 +335,7 @@
                 
               
 
-              <time title="Created: 2019-05-16 00:00:00 / Modified: 07:09:36" itemprop="dateCreated datePublished" datetime="2019-05-16T00:00:00+00:00">2019-05-16</time>
+              <time title="Created: 2019-05-16 00:00:00 / Modified: 07:28:38" itemprop="dateCreated datePublished" datetime="2019-05-16T00:00:00+00:00">2019-05-16</time>
             
 
             
@@ -376,9 +376,7 @@
       
         
           
-            <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>现在有两个异步函数，希望能够按顺序异步执行它们<br>function add1(n, callback) {<br>  setTimeout(() =&gt; {<br>    callback(n + 1);<br>  }, 1000);<br>}</p>
-<p>function mult3(n, callback) {<br>  setTimeout(() =&gt; {<br>    callback(n * 3);<br>  }, 1000);<br>}</p>
-<p>compose(1, add1, mult3)<br>// 希望输出6 (1 + 1) * 3</p>
+            <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>现在有两个异步函数，希望能够按顺序异步执行它们<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3)</span><br><span class="line">// 希望输出6 (1 + 1) * 3</span><br></pre></td></tr></table></figure></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function compose(n, ...funcs) &#123;</span><br><span class="line">  const createP = (func, value) =&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; func(value, resolve));</span><br><span class="line">  &#125;</span><br><span class="line">  let p = Promise.resolve(n);</span><br><span class="line">  for (let i = 0; i &lt; funcs.length; i++) &#123;</span><br><span class="line">    const func = funcs[i];</span><br><span class="line">    p = p.then((v) =&gt; createP(func, v));</span><br><span class="line">  &#125;</span><br><span class="line">  return p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3).then(console.log);</span><br></pre></td></tr></table></figure>
           
         
@@ -497,7 +495,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-16 07:09:36" itemprop="dateModified" datetime="2019-05-16T07:09:36+00:00">2019-05-16</time>
+                <time title="Modified: 2019-05-16 07:28:38" itemprop="dateModified" datetime="2019-05-16T07:28:38+00:00">2019-05-16</time>
               
             
           </span>
@@ -687,7 +685,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-16 07:09:36" itemprop="dateModified" datetime="2019-05-16T07:09:36+00:00">2019-05-16</time>
+                <time title="Modified: 2019-05-16 07:28:38" itemprop="dateModified" datetime="2019-05-16T07:28:38+00:00">2019-05-16</time>
               
             
           </span>
@@ -854,7 +852,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-16 07:09:36" itemprop="dateModified" datetime="2019-05-16T07:09:36+00:00">2019-05-16</time>
+                <time title="Modified: 2019-05-16 07:28:38" itemprop="dateModified" datetime="2019-05-16T07:28:38+00:00">2019-05-16</time>
               
             
           </span>
@@ -1017,7 +1015,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-16 07:09:36" itemprop="dateModified" datetime="2019-05-16T07:09:36+00:00">2019-05-16</time>
+                <time title="Modified: 2019-05-16 07:28:38" itemprop="dateModified" datetime="2019-05-16T07:28:38+00:00">2019-05-16</time>
               
             
           </span>
