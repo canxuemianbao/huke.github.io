@@ -8,7 +8,7 @@ date: 2019-05-7
 > 2. 开发者可以使用key属性来提示哪些子元素是稳定的。
 
 
- <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/tree_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
+ <img src="http://hukeblog.cn/blog/tree_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
 
 本质上其实很简单，react只对比同层同类型的节点。如图中每个颜色对应的部分。
 
@@ -122,7 +122,7 @@ function setComponentProps(component, props) {
 
 注意，如果两个component类型不一致，它们的内容一样也会被完全替代，如图：
 
- <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/component_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
+ <img src="http://hukeblog.cn/blog/component_diff.jpg" width = "400" height = "300" alt="坐标轴" align=center />
 
 ### 子节点的对比
 子节点递归会有3种情况：
@@ -187,7 +187,7 @@ function diffChildren(dom, vchildren) {
 这边的实现参考了[从零开始实现一个React](https://github.com/hujiulong/simple-react/tree/master)的例子，自己fork了它，并且从第一章开始重新写。
 这边可以拉一下我的分支来本地跑跑，git clone https://github.com/canxuemianbao/simple-react/tree/diff， `yarn start`即可。
 
- <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/react_diff.gif" width = "900" height = "600" alt="坐标轴" align=center />
+ <img src="http://hukeblog.cn/blog/react_diff.gif" width = "900" height = "600" alt="坐标轴" align=center />
 
 如图，只有文字被浏览器发现修改了。
 
