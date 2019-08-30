@@ -4,97 +4,56 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang>
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/blog/',
     scheme: 'Muse',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="动机一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。整个原理很简单：  通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件 通过github pages来部署网站 通过circle ci来执行配置环境，推代码一系列操作 以后push markdown文">
 <meta name="keywords" content="react canvas nodejs">
@@ -104,33 +63,27 @@
 <meta property="og:site_name" content="残血面包的博客">
 <meta property="og:description" content="动机一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。整个原理很简单：  通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件 通过github pages来部署网站 通过circle ci来执行配置环境，推代码一系列操作 以后push markdown文">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-30T08:44:04.933Z">
+<meta property="og:updated_time" content="2019-08-30T09:55:44.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过circle ci和hexo搭建自己的博客">
 <meta name="twitter:description" content="动机一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。整个原理很简单：  通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件 通过github pages来部署网站 通过circle ci来执行配置环境，推代码一系列操作 以后push markdown文">
-
-
-
-
-
-  
-  
   <link rel="canonical" href="https://canxuemianbao.github.io/blog/2019/04/25/搭建ci cd/">
 
 
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>通过circle ci和hexo搭建自己的博客 | 残血面包的博客</title>
+  <meta name="generator" content="Hexo 3.9.0">
   
-
-
-
-
 
 
 
@@ -141,7 +94,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -150,7 +102,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -167,29 +119,20 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">残血面包的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -202,94 +145,58 @@
 </div>
 
 
-
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="menu-item menu-item-home">
       
-    
-
     
 
     <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
       
-    
-
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
     
 
     <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
     
 
-  
-
-  
 </nav>
-
-
-
-  
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-    
-
-  
-
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/25/搭建ci cd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,87 +208,48 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">通过circle ci和hexo搭建自己的博客
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">通过circle ci和hexo搭建自己的博客
-
-              
-            
-          </h1>
-        
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-04-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+00:00">2019-04-25</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。<br>整个原理很简单：</p>
@@ -408,58 +276,41 @@
 <p><a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5" target="_blank" rel="noopener">创建ssh key</a></p>
 <p><a href="https://halu.lu/post/auto-deploy-with-circleci/" target="_blank" rel="noopener">博客</a></p>
 
-      
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
+        
       
 
-      
-      
-      
+      <footer class="post-footer">
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2019/04/29/webAudio重构/" rel="prev" title="重构audio引擎中设计模式的应用">
+                  重构audio引擎中设计模式的应用 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/04/29/webAudio重构/" rel="prev" title="重构audio引擎中设计模式的应用">
-                重构audio引擎中设计模式的应用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
-
 
   </div>
 
@@ -467,12 +318,7 @@
           </div>
           
 
-  
-
-
-
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -483,95 +329,56 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
-
+        
+        
+        
+        
       
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术"><span class="nav-number">2.</span> <span class="nav-text">技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#github"><span class="nav-number">2.1.</span> <span class="nav-text">github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo"><span class="nav-number">2.2.</span> <span class="nav-text">hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#circle-ci"><span class="nav-number">2.3.</span> <span class="nav-text">circle ci</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联github账号"><span class="nav-number">2.3.1.</span> <span class="nav-text">关联github账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置ssh以便使circle-ci有推代码到github上的权限"><span class="nav-number">2.3.2.</span> <span class="nav-text">配置ssh以便使circle ci有推代码到github上的权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写config-yml"><span class="nav-number">2.3.3.</span> <span class="nav-text">编写config.yml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小tips"><span class="nav-number">3.</span> <span class="nav-text">小tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">huke</p>
-              <div class="site-description motion-element" itemprop="description">hello world</div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/blog/archives/">
-                
-                    <span class="site-state-item-count">5</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huke</p>
+  <div class="site-description" itemprop="description">hello world</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
       </div>
+    
+  </nav>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
 
-            
-            
-            
-            
 
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术"><span class="nav-number">2.</span> <span class="nav-text">技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#github"><span class="nav-number">2.1.</span> <span class="nav-text">github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo"><span class="nav-number">2.2.</span> <span class="nav-text">hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#circle-ci"><span class="nav-number">2.3.</span> <span class="nav-text">circle ci</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联github账号"><span class="nav-number">2.3.1.</span> <span class="nav-text">关联github账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置ssh以便使circle-ci有推代码到github上的权限"><span class="nav-number">2.3.2.</span> <span class="nav-text">配置ssh以便使circle ci有推代码到github上的权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写config-yml"><span class="nav-number">2.3.3.</span> <span class="nav-text">编写config.yml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小tips"><span class="nav-number">3.</span> <span class="nav-text">小tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
+      </div>
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -582,27 +389,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">huke</span>
-
-  
-
-  
 </div>
-
-
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
-
-
-
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
 
         
+
+
+
+
 
 
 
@@ -614,131 +410,41 @@
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-
-  
+  <script src="/blog/lib/anime.min.js?v=3.1.0"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/blog/js/utils.js?v=7.1.0"></script>
-
-  <script src="/blog/js/motion.js?v=7.1.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
-
-
-
-  
-  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
-<script src="/blog/js/post-details.js?v=7.1.0"></script>
+<script src="/blog/js/utils.js?v=7.3.0"></script><script src="/blog/js/motion.js?v=7.3.0"></script>
+<script src="/blog/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/blog/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
 
 
-  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-
-  
 
 
 
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
 
   
 

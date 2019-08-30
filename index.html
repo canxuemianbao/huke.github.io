@@ -4,97 +4,56 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang>
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.3.0">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/blog/',
     scheme: 'Muse',
-    version: '7.1.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="hello world">
 <meta name="keywords" content="react canvas nodejs">
@@ -107,29 +66,23 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="残血面包的博客">
 <meta name="twitter:description" content="hello world">
-
-
-
-
-
-  
-  
   <link rel="canonical" href="https://canxuemianbao.github.io/blog/">
 
 
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>残血面包的博客</title>
+  <meta name="generator" content="Hexo 3.9.0">
   
-
-
-
-
 
 
 
@@ -140,7 +93,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -149,7 +101,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -166,30 +118,20 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">残血面包的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -202,94 +144,57 @@
 </div>
 
 
-
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
+        <li class="menu-item menu-item-home">
       
-    
-
     
 
     <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
       
-    
-
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
     
 
     <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
     
 
-  
-
-  
 </nav>
-
-
-
-  
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/05/16/实现一个异步compose/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,81 +206,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/05/16/实现一个异步compose/" class="post-title-link" itemprop="url">实现一个异步compose方法</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/blog/2019/05/16/实现一个异步compose/" class="post-title-link" itemprop="url">实现一个异步compose方法</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-05-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-16T00:00:00+00:00">2019-05-16</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -383,68 +251,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>现在有两个异步函数，希望能够按顺序异步执行它们<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3)</span><br><span class="line">// 希望输出6 (1 + 1) * 3</span><br></pre></td></tr></table></figure></p>
+          <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>现在有两个异步函数，希望能够按顺序异步执行它们<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3)</span><br><span class="line">// 希望输出6 (1 + 1) * 3</span><br></pre></td></tr></table></figure></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function add1(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n + 1);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mult3(n, callback) &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    callback(n * 3);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function compose(n, ...funcs) &#123;</span><br><span class="line">  const createP = (func, value) =&gt; &#123;</span><br><span class="line">    return new Promise((resolve) =&gt; func(value, resolve));</span><br><span class="line">  &#125;</span><br><span class="line">  let p = Promise.resolve(n);</span><br><span class="line">  for (let i = 0; i &lt; funcs.length; i++) &#123;</span><br><span class="line">    const func = funcs[i];</span><br><span class="line">    p = p.then((v) =&gt; createP(func, v));</span><br><span class="line">  &#125;</span><br><span class="line">  return p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">compose(1, add1, mult3).then(console.log);</span><br></pre></td></tr></table></figure>
-          
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/05/07/react的diff算法的模拟/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -456,81 +287,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/05/07/react的diff算法的模拟/" class="post-title-link" itemprop="url">写一个react：实现react diff算法</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/blog/2019/05/07/react的diff算法的模拟/" class="post-title-link" itemprop="url">写一个react：实现react diff算法</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-05-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-07T00:00:00+00:00">2019-05-07</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -538,19 +332,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="react-diff算法的简介"><a href="#react-diff算法的简介" class="headerlink" title="react diff算法的简介"></a>react diff算法的简介</h2><blockquote>
+          <h2 id="react-diff算法的简介"><a href="#react-diff算法的简介" class="headerlink" title="react diff算法的简介"></a>react diff算法的简介</h2><blockquote>
 <p>React基于两点假设，实现了一个启发的O(n)算法：</p>
 <ol>
 <li>两个不同类型的元素将产生不同的树。</li>
 <li>开发者可以使用key属性来提示哪些子元素是稳定的。</li>
 </ol>
 </blockquote>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/tree_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/tree_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
 <p>本质上其实很简单，react只对比同层同类型的节点。如图中每个颜色对应的部分。</p>
 <h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>如果想要实现这个需求，我们需要首先了解react节点的基本内部结构，即vnode（react的虚拟dom的格式）以及component（提供render方法来产生虚拟dom）这两种节点。<br>其中vnode的数据结构大概长成这样(实际中的tag字段其实是type字段)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;tag: &quot;div&quot;, attrs: null, children: Array(0)&#125;</span><br></pre></td></tr></table></figure></p>
 <p>而component的数据结构长成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;tag: ƒ, attrs: null, children: Array(0)&#125;</span><br></pre></td></tr></table></figure></p>
@@ -565,7 +354,7 @@
 <p>通过比较这两个元素，React知道仅更改底层DOM元素的className。<br>在处理完DOM元素后，React递归其后代。<br>简易代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function diffNode(dom, vnode) &#123;</span><br><span class="line">  diffAttributes(dom, vnode);</span><br><span class="line"></span><br><span class="line">  if (vnode.children &amp;&amp; vnode.children.length &gt; 0 || (out.childNodes &amp;&amp; out.childNodes.length &gt; 0)) &#123;</span><br><span class="line">    diffChildren(dom, vnode.children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return dom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="component的对比"><a href="#component的对比" class="headerlink" title="component的对比"></a>component的对比</h3><p>当中序遍历遇到了component的时候，react会判断这上一次的dom是否是这一次component的类型，如果是的话就调用setComponentProps把props传给component，否则就完全销毁上一个component（如果有的话），然后重新创建一个component。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">function diffComponent(dom, vnode) &#123;</span><br><span class="line">  // _component记录了上一个dom的component</span><br><span class="line"></span><br><span class="line">  const c = dom &amp;&amp; dom._component;</span><br><span class="line">    // 如果上一个dom的component存在并且类型和新的component一致的话就改变它的props</span><br><span class="line">    // 将新的props传给component</span><br><span class="line"></span><br><span class="line">    setComponentProps(c, vnode.attrs);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // 不一致的话则重新生成新的component</span><br><span class="line"></span><br><span class="line">    if (c) &#123;</span><br><span class="line">      unmountComponent(c);</span><br><span class="line">    &#125;</span><br><span class="line">    // 创建component，并且走它的生命周期</span><br><span class="line"></span><br><span class="line">    const newComponent = createComponent(vnode.tag, vnode.attrs);</span><br><span class="line">    setComponentProps(newComponent, vnode.attrs);</span><br><span class="line">    if (dom) &#123;</span><br><span class="line">      dom._component = null;</span><br><span class="line">      removeNode(dom);</span><br><span class="line">    &#125;</span><br><span class="line">    dom = newComponent.base;</span><br><span class="line">  &#125;</span><br><span class="line">  return dom;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function renderComponent(component) &#123;</span><br><span class="line">  let base;</span><br><span class="line">  if (component.base) &#123;</span><br><span class="line">      component.componentWillUpdate();</span><br><span class="line">  &#125;</span><br><span class="line">  base = diffNode(component.base, component.render());</span><br><span class="line">  if (!component.base) &#123;</span><br><span class="line">      component.componentDidMount();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      component.componentDidUpdate();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  component.base = base;</span><br><span class="line">  base._component = component;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createComponent(component, props) &#123;</span><br><span class="line">  if (component.prototype &amp;&amp; component.prototype.render) &#123;</span><br><span class="line">    return new component(props);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    const inst = &#123;&#125;;</span><br><span class="line">    inst.constructor = component;</span><br><span class="line">    inst.render = function() &#123;</span><br><span class="line">      return this.constructor(props);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// componentWillMount componentWillReceiveProps</span><br><span class="line">function setComponentProps(component, props) &#123;</span><br><span class="line">  if (!component.base) &#123;</span><br><span class="line">      component.componentWillMount();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      component.componentWillReceiveProps(props);</span><br><span class="line">  &#125;</span><br><span class="line">  renderComponent(component);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意，如果两个component类型不一致，它们的内容一样也会被完全替代，如图：</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/component_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/component_diff.jpg" width="400" height="300" alt="坐标轴" align="center"></p>
 <h3 id="子节点的对比"><a href="#子节点的对比" class="headerlink" title="子节点的对比"></a>子节点的对比</h3><p>子节点递归会有3种情况：</p>
 <ol>
 <li>子节点提供了key，则按照key相同的先比较</li>
@@ -575,66 +364,34 @@
 <p>而在最后则会删除那些不需要的旧节点。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">function diffChildren(dom, vchildren) &#123;</span><br><span class="line">  const domChildren = dom.childNodes;</span><br><span class="line">  const children = [];</span><br><span class="line"></span><br><span class="line">  const keyed = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  // 将有key的节点和没有key的节点分开</span><br><span class="line">  if (domChildren.length &gt; 0) &#123;</span><br><span class="line">    for (let i = 0; i &lt; domChildren.length; i++) &#123;</span><br><span class="line">      const child = domChildren[i];</span><br><span class="line">      const key = child.key;</span><br><span class="line">      if (key) &#123;</span><br><span class="line">        keyed[key] = child;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        children.push(child);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (let i = 0; i &lt; vchildren.length; i++) &#123;</span><br><span class="line">    const vnode = vchildren[i];</span><br><span class="line">    let child;</span><br><span class="line">    if (vnode.key != undefined &amp;&amp; vnode.key === keyed[key]) &#123;</span><br><span class="line">      child = keyed[key];</span><br><span class="line">      keyed[key] = undefined;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      for (let j = 0; j &lt; children.length; j++) &#123;</span><br><span class="line">        if (children[j] != undefined &amp;&amp; isSameNodeType(children[j], vnode)) &#123;</span><br><span class="line">          child = children[j];</span><br><span class="line">          children[j] = undefined;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 原来就有的节点会就地改变，而如果child为undefined的话则会创造新的节点，vnode不会是undefined</span><br><span class="line">    const out = diffNode(child, vnode);</span><br><span class="line">    const currentDom = dom.childNodes[i];</span><br><span class="line">    if (out !== currentDom) &#123;</span><br><span class="line">      dom.insertBefore(out, currentDom);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const pendingLength = dom.childNodes.length;</span><br><span class="line">  for (let i = vchildren.length; i &lt; pendingLength; i++) &#123;</span><br><span class="line">    dom.removeChild(dom.childNodes[vchildren.length]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>这边的实现参考了<a href="https://github.com/hujiulong/simple-react/tree/master" target="_blank" rel="noopener">从零开始实现一个React</a>的例子，自己fork了它，并且从第一章开始重新写。<br>这边可以拉一下我的分支来本地跑跑，git clone <a href="https://github.com/canxuemianbao/simple-react/tree/diff，" target="_blank" rel="noopener">https://github.com/canxuemianbao/simple-react/tree/diff，</a> <code>yarn start</code>即可。</p>
-<p> <img src="http://pqpdgd2yx.bkt.clouddn.com/blog/react_diff.gif" width="900" height="600" alt="坐标轴" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/react_diff.gif" width="900" height="600" alt="坐标轴" align="center"></p>
 <p>如图，只有文字被浏览器发现修改了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前只是将理论应用到了代码里面，大部分是参考别人的实现==，但是大方向是没有问题的。下一步可以是围观react的真正实现，也可以是继续按照原理实现fiber和异步state，看看哪一步走不下去了就换一个方向吧~，在之后会完善本篇博客，使其更容易阅读。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/hujiulong/blog/issues/6" target="_blank" rel="noopener">从零开始实现一个React</a><br><a href="https://react.docschina.org/docs/reconciliation.html" target="_blank" rel="noopener">react reconciliation</a><br><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">React 源码剖析系列 － 不可思议的 react diff</a></p>
 
-          
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/30/canvas计算方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -646,81 +403,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/04/30/canvas计算方式/" class="post-title-link" itemprop="url">canvas移动/缩放/旋转的常用计算方式</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/blog/2019/04/30/canvas计算方式/" class="post-title-link" itemprop="url">canvas移动/缩放/旋转的常用计算方式</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+00:00">2019-04-30</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -728,80 +448,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。</p>
-<p> <img src="/blog/coordinate.png" width="400" height="300" alt="坐标轴" align="center"></p>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>  canvas2d的坐标移动，旋转，和缩放基本都是通过对画布而不是要画的物体本身进行操作的，在这里记录一下计算方式，免得每次都忘记。</p>
+<p> <img src="http://hukeblog.cn/blog/coordinate.png" width="400" height="300" alt="坐标轴" align="center"></p>
 <h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><p>  想要让物体中心移动坐标点为x, y的位置，可以这么画：</p>
-<p> <img src="/blog/translate1.png" width="400" height="300" alt="移动" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/translate1.png" width="400" height="300" alt="移动" align="center"></p>
 <h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>  如果想要先移动再到x，y，再顺时针旋转angle度的话，可以这么画：</p>
-<p> <img src="/blog/rotate.png" width="400" height="300" alt="移动+旋转" align="center"><br> <img src="/blog/draw_translate_and_rotate.png" width="400" height="300" alt="移动+旋转" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/rotate.png" width="400" height="300" alt="移动+旋转" align="center"><br> <img src="http://hukeblog.cn/blog/draw_translate_and_rotate.png" width="400" height="300" alt="移动+旋转" align="center"></p>
 <h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>  改变比例的话可以这么画（记住画布翻转过后里面的东西也是翻转的）：</p>
-<p> <img src="/blog/flip.png" width="400" height="300" alt="翻转" align="center"><br> <img src="/blog/draw_flip.png" width="400" height="300" alt="翻转" align="center"></p>
+<p> <img src="http://hukeblog.cn/blog/flip.png" width="400" height="300" alt="翻转" align="center"><br> <img src="http://hukeblog.cn/blog/draw_flip.png" width="400" height="300" alt="翻转" align="center"></p>
 <h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>  transfrom基本公式为：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.transform(a, b, c, d, e, f);</span><br></pre></td></tr></table></figure></p>
-<p>  <img src="/blog/matrix.png" width="400" height="200" alt="翻转" align="center"><br>  transform为更高级的特性，能够免去很多手动计算，比如上面的各种情况用transform来画就是：</p>
+<p>  <img src="http://hukeblog.cn/blog/matrix.png" width="400" height="200" alt="翻转" align="center"><br>  transform为更高级的特性，能够免去很多手动计算，比如上面的各种情况用transform来画就是：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 只移动</span><br><span class="line">ctx.transform(1, 0, 0, 1, x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br></pre></td></tr></table></figure>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 图片中心点移动到(x, y)后旋转angle度</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  x + width / 2, y + height / 2);</span><br><span class="line">ctx.drawImage(img, -width / 2, -height / 2);</span><br><span class="line"></span><br><span class="line">// 图片左上角点围绕某个点(x1, x2)旋转</span><br><span class="line">ctx.transform(</span><br><span class="line">  Math.cos(angle), Math.sin(angle),</span><br><span class="line">  -Math.sin(angle), Math.cos(angle),</span><br><span class="line">  - Math.cos(angle) * x1 + Math.sin(angle) * y1 + x1 , - Math.sin(angle) * x1 - Math.cos(angle) * y1 + y1);</span><br><span class="line">ctx.drawImage(img, 0, 0);</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html" target="_blank" rel="noopener">凹凸实验室</a></p>
 
-          
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/29/webAudio重构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -813,81 +496,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/04/29/webAudio重构/" class="post-title-link" itemprop="url">重构audio引擎中设计模式的应用</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/blog/2019/04/29/webAudio重构/" class="post-title-link" itemprop="url">重构audio引擎中设计模式的应用</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+00:00">2019-04-29</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -895,12 +541,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>原来的audio标签不仅太卡顿了，缓存由浏览器控制，而且还没有立体声，对于3d游戏的应用场景不能忍。因此我们打算使用webaudio对它进行重构，webaudio是一个更底层，操纵性更好的api（虽然兼容性和audio标签一样蛋疼==），应用在3d游戏里面显然更加合适。写它的过程中用到了一些设计模式，拿出来分享一下。</p>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>原来的audio标签不仅太卡顿了，缓存由浏览器控制，而且还没有立体声，对于3d游戏的应用场景不能忍。因此我们打算使用webaudio对它进行重构，webaudio是一个更底层，操纵性更好的api（虽然兼容性和audio标签一样蛋疼==），应用在3d游戏里面显然更加合适。写它的过程中用到了一些设计模式，拿出来分享一下。</p>
 <h2 id="大概的文件结构"><a href="#大概的文件结构" class="headerlink" title="大概的文件结构"></a>大概的文件结构</h2><p><img src="http://pqpdgd2yx.bkt.clouddn.com/blog/WechatIMG7.png" alt="avatar"></p>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>我们需要使用webaudio作为底层api，封装一个音效和背景音乐播放器。因此有一个source.ts文件用于做最基本的webaudio封装，它其实就已经是一个音乐播放器了，effectPlayer则是装饰了source.ts的音效播放器。</p>
 <h3 id="单例模式和简单工厂模式"><a href="#单例模式和简单工厂模式" class="headerlink" title="单例模式和简单工厂模式"></a>单例模式和简单工厂模式</h3><p>source.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class AudioSource &#123;</span><br><span class="line">  private static _audioContext:AudioContext;</span><br><span class="line"></span><br><span class="line">  private constructor(src:string, context:AudioContext, buffer:AudioBuffer, options:AudioOptions = &#123;&#125;) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // _audioContext为单例，因为多个audioSource会使用同一个AudioContext</span><br><span class="line">  public static getAudioContext() &#123;</span><br><span class="line">    if (AudioSource._audioContext === undefined) &#123;</span><br><span class="line">      AudioSource._audioContext = new AudioContext();</span><br><span class="line">    &#125;</span><br><span class="line">    return AudioSource._audioContext;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 简单工厂，隐藏了复杂的创建过程：javascript不能够使用异步构造函数，因此将创建过程隐藏到build方法内部。</span><br><span class="line">  public static async build(src:string, options?:AudioOptions) &#123;</span><br><span class="line">    const audioContext = AudioSource.getAudioContext();</span><br><span class="line"></span><br><span class="line">    const getBuffer = async () =&gt; &#123;</span><br><span class="line">      const arrayBuffer = await fetch(src, &#123;method:&apos;get&apos;&#125;).then((response) =&gt; response.arrayBuffer());</span><br><span class="line">      const waitForDecode = new Promise&lt;AudioBuffer&gt;((resolve, reject) =&gt; audioContext.decodeAudioData(arrayBuffer, resolve, reject));</span><br><span class="line">      const audioBuffer = await waitForDecode;</span><br><span class="line">      return audioBuffer;</span><br><span class="line">    &#125;;</span><br><span class="line">    const audioSource = new AudioSource(src, audioContext, await getBuffer(), options);</span><br><span class="line">    return audioSource;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 播放音乐</span><br><span class="line">  public tick() &#123;</span><br><span class="line">    ....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -910,61 +551,29 @@
 <p>effectPlayer.ts</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">// 对象池模式，用于存储多个同时发生的音效</span><br><span class="line">class Pool &#123;</span><br><span class="line">  private soundPrototype:AudioSource;</span><br><span class="line">  private unUsed:AudioSource[] = [];</span><br><span class="line">  private capacity = 0;</span><br><span class="line">  public constructor(sound:AudioSource, capacity:number) &#123;</span><br><span class="line">    this.soundPrototype = sound;</span><br><span class="line">    this.capacity = capacity;</span><br><span class="line">    while (this.unUsed.length &lt; capacity) &#123;</span><br><span class="line">      this.unUsed.push(sound.clone());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public alloc() &#123;</span><br><span class="line">    return this.unUsed.pop() || this.soundPrototype.clone();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public returnToPool (sound:AudioSource) &#123;</span><br><span class="line">    if (this.unUsed.length &lt; this.capacity) &#123;</span><br><span class="line">      this.unUsed.push(sound);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 装饰器模式，封装了AudioSource</span><br><span class="line">class EffectPlayer &#123;</span><br><span class="line">  private currentSounds:AudioSource[] = [];</span><br><span class="line">  private pool:Pool;</span><br><span class="line">  constructor(sound:AudioSource, capacity:number) &#123;</span><br><span class="line">    this.pool = new Pool(sound, capacity);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public play(state:AudioOptions) &#123;</span><br><span class="line">    const sound = this.pool.alloc();</span><br><span class="line">    state = Object.assign(&#123;playStatus:PlayStatus.playing&#125;, state);</span><br><span class="line">    sound.setState(state);</span><br><span class="line">    this.currentSounds.push(sound);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public tick() &#123;</span><br><span class="line">    const newCurrentSounds:AudioSource[] = [];</span><br><span class="line">    for (let i = 0; i &lt; this.currentSounds.length; i++) &#123;</span><br><span class="line">      const currentSound = this.currentSounds[i];</span><br><span class="line">      currentSound.tick();</span><br><span class="line">      const playStatus = currentSound.getState().playStatus;</span><br><span class="line">      if (playStatus === PlayStatus.stop) &#123;</span><br><span class="line">        this.pool.returnToPool(currentSound);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        newCurrentSounds.push(currentSound);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    this.currentSounds = newCurrentSounds;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://canxuemianbao.github.io/blog/blog/2019/04/25/搭建ci cd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -976,81 +585,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="残血面包的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/04/25/搭建ci cd/" class="post-title-link" itemprop="url">通过circle ci和hexo搭建自己的博客</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/blog/2019/04/25/搭建ci cd/" class="post-title-link" itemprop="url">通过circle ci和hexo搭建自己的博客</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
               <time title="Created: 2019-04-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+00:00">2019-04-25</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-30 08:44:04" itemprop="dateModified" datetime="2019-08-30T08:44:04+00:00">2019-08-30</time>
-              
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-30 09:55:44" itemprop="dateModified" datetime="2019-08-30T09:55:44+00:00">2019-08-30</time>
+              </span>
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
           
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1058,12 +630,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。<br>整个原理很简单：</p>
+          <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>一开始是打算搭一个自己博客，然后突然又想了解一下ci的部署流程，就顺手一起搭了。看到git push后1分钟左右刷新页面有了变化还是比较有成就感滴。<br>整个原理很简单：</p>
 <ol>
 <li>通过github托管blog项目，master是项目文件，gh-pages分支是博客的html文件</li>
 <li>通过github pages来部署网站</li>
@@ -1087,47 +654,25 @@
 <p><a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5" target="_blank" rel="noopener">创建ssh key</a></p>
 <p><a href="https://halu.lu/post/auto-deploy-with-circleci/" target="_blank" rel="noopener">博客</a></p>
 
-          
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-  </section>
+  </div>
 
   
 
@@ -1136,7 +681,6 @@
           
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -1147,69 +691,49 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">huke</p>
-              <div class="site-description motion-element" itemprop="description">hello world</div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/blog/archives/">
-                
-                    <span class="site-state-item-count">5</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
       </div>
+      <!--/noindex-->
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huke</p>
+  <div class="site-description" itemprop="description">hello world</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+  </nav>
 
-      
+
+
+      </div>
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -1220,27 +744,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">huke</span>
-
-  
-
-  
 </div>
-
-
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
-
-
-
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
 
         
+
+
+
+
 
 
 
@@ -1252,96 +765,17 @@
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-
-  
+  <script src="/blog/lib/anime.min.js?v=3.1.0"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/blog/js/utils.js?v=7.1.0"></script>
-
-  <script src="/blog/js/motion.js?v=7.1.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
-
-
-
-  
-
-  
-
-
-  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
-
-
-  
-
-  
-
-  
-
-  
+<script src="/blog/js/utils.js?v=7.3.0"></script><script src="/blog/js/motion.js?v=7.3.0"></script>
+<script src="/blog/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/blog/js/next-boot.js?v=7.3.0"></script>
 
 
 
@@ -1350,27 +784,22 @@
 
 
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
 
   
 
